@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test HLS Proxy</title>
+  </head>
+  <body>
+    <h2>Testing Video Proxy</h2>
+
+    <video id="vid" controls width="720"></video>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+      var video = document.getElementById("vid");
+      var src = "http://localhost:3000/proxy/1143369301/master.m3u8";
+
+      if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+      }
+    </script>
+  </body>
+</html>
